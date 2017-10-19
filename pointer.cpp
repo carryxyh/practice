@@ -48,5 +48,14 @@ int main() {
     void *pvoid = &obj; //obj可以是任何类型的对象
     pvoid = pobj; //pvoid可以存放任意类型的指针
 
+    //pointer point to ref
+    int i = 42;
+    int *po;  //p是一个int型指针
+    int *&r = po; //r是一个对指针p的引用   解读r的类型 从右向左阅读r。离r最近的符号是&，所以r是引用 *说明r引用的是一个指针  最后int说明r引用的是int类型的指针
+
+    r = &i; //r引用了一个指针，因此给r赋值&i就是让po指向i
+    *r = 21; //解引用r得到i，也就是po指向的对象，将i的值改为0  这里的 *r 等价于 *int指针
+    std::cout << i << std::endl;
+
     return 0;
 }
