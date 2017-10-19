@@ -3,5 +3,5 @@ project(practice)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES main.cpp)
+set(SOURCE_FILES ref.cpp)
 add_executable(practice ${SOURCE_FILES})

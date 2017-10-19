@@ -7,7 +7,7 @@
 int reused = 42; //全局作用域
 int main() {
 
-    reused = 32;//这里输出32  已经把全局的覆盖了
+//    reused = 32;//这里输出32  已经把全局的覆盖了
     std::cout << reused << std::endl;
 
 
