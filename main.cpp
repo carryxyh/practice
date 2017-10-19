@@ -51,5 +51,20 @@ int main() {
 
     std::cout << "---------------" << std::endl;
 
+    int sum;
+    for (int j = 0; j < 10; ++j) {
+        sum += j;
+    }
+    std::cout << "sum is " << sum << std::endl;
+
+    std::cout << "---------------" << std::endl;
+
+    int ii = 100, ss = 0;
+    for (int ii = 0; ii != 10; ++ii) {
+        ss += ii;
+    }
+    //这里输出 100 45  这里的ii是main里的ii  但是ss累加的ii是for循环中的
+    std::cout << ii << "    " << sum << std::endl;
+
     return 0;
 }
