@@ -29,5 +29,46 @@ int main() {
     int i = refVal; // 正确 i=ival;
     std::cout << i << std::endl; //2
 
+    //错误 初始值必须是对象
+//    int &refVal4 = 10;
+//    double dval = 3.14;
+//    int &refVal = dval; //错误 此处引用类型的初始值必须是int对象
+
+    int iii = 1, &r1 = iii;
+    //正确
+    double d = 0.1, &r2 = d;
+
+    //正确
+    r1 = d;
+
+    std::cout << iii << "   " << r1 << "    " << d << "   " << r2 << std::endl; // 1 1 0.1 0.1
+
+    r2 = r1;
+
+    std::cout << iii << "   " << r1 << "    " << d << "   " << r2 << std::endl; // 1 1 1 1
+
+    iii = r2;
+
+    std::cout << iii << "   " << r1 << "    " << d << "   " << r2 << std::endl; // 1 1 1 1
+
+    r1 = d;
+
+    std::cout << iii << "   " << r1 << "    " << d << "   " << r2 << std::endl; // 1 1 1 1
+
+    //test
+    int err = 1, &refff = err;
+    double errd = 0.1, &refffd = errd;
+    //这样赋值是正确的
+    refff = errd;
+
+    std::cout << err << std::endl; //0  0.1自动被转化成了0
+
+    //test
+    int testi, &testRef = testi;
+    testi = 5;
+    testRef = 10;
+    std::cout << testi << "   " << testRef << std::endl; // 10  10
+
+
     return 0;
 }
