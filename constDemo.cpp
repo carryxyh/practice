@@ -8,19 +8,21 @@
  *
  * @return
  */
+#include <iostream>
+
 int main() {
     const int ci = 1024;
     const int &r1 = ci; //正确：引用及其对应的对象都是常量
 
-    r1 = 42;//错误：r1是常量引用
-    int &r2 = ci;  //错误：试图让一个非常量引用指向一个常量对象
+//    r1 = 42;//错误：r1是常量引用
+//    int &r2 = ci;  //错误：试图让一个非常量引用指向一个常量对象
 
     //1.demo
     int i = 42;
     const int &ri = i; //允许将const int&绑定到一个普通的int对象上
     const int &ri2 = 42; //正确：ri2是一个常量引用
     const int &ri3 = ri * 2; //正确：ri3是一个常量引用
-    int &ri4 = ri * 2; //错误：ri4是一个普通的非常量引用
+//    int &ri4 = ri * 2; //错误：ri4是一个普通的非常量引用
 
     double dd = 3.14;
     const int &rd = dd;
@@ -31,7 +33,12 @@ int main() {
     //既然让rd引用dd，就肯定想通过rd改变dd的值，否则干嘛要给rd赋值呢？所以c++把这种行为规定为非法
 
     //注意：常量引用仅对引用可参与的操作做出了限定，对于引用本身是不是一个常量不做限定！由于对象可能是非常量，所以允许通过其他途径改变它的值
-
-
+    int testi = 42;
+    int &testri1 = testi;
+    const int &testri2 = testi;
+    std::cout << testi << "    " << testri2 << std::endl; // 42  42
+    testi = 0;
+    std::cout << testi << "    " << testri2 << std::endl; // 0  0
+    testri2 = 10; // 错误 testri2 是常量引用
     return 0;
 }
