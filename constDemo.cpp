@@ -71,5 +71,10 @@ int main() {
         curErr = &pi; //错误：curErr本身是常量 不能变！
     }
 
+
+    int ziyuan = 10;
+    int ziyuanAfter = 20;
+    const int &rziyuan =ziyuan; //rziyuan是一个引用，指向一个int常量
+
     return 0;
 }

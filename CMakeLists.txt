@@ -3,5 +3,5 @@ project(practice)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES constDemo.cpp)
+set(SOURCE_FILES const-uper-downer.cpp)
 add_executable(practice ${SOURCE_FILES})
