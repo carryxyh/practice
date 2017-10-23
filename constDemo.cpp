@@ -24,6 +24,8 @@ int main() {
     const int &ri3 = ri * 2; //正确：ri3是一个常量引用
 //    int &ri4 = ri * 2; //错误：ri4是一个普通的非常量引用
 
+    //-----------------------------------
+
     double dd = 3.14;
     const int &rd = dd;
     //以上两句等价于：
@@ -46,12 +48,28 @@ int main() {
     const double *cptr = &pi; //正确：cptr可以指向一个双精度常量
     *cptr = 42;//错误：不能给*cptr赋值
 
+    //-----------------------------------
+
     //指针的类型必须与其所指对象的类型一致，有两个例外：
     //1.允许一个指向常量的指针指向一个非常量对象
     double dvava = 3.14;
     cptr = &dvava; //正确：但是不能通过cptr改变dvava的值 下面语句是错误的
     *cptr = 314;
     //指向常量的指针也没有规定其所指的对象必须是一个常量。指向常量的指针仅仅要求不能通过该指针改变对象的值，没有规定那个对象的值不能通过其他途径改变
+
+    //-----------------------------------
+
+    int errNumb = 0;
+    int *const curErr = &errNumb; // curErr将一直指向errNumb
+    const double pppi = 3.14159;
+    const double *const pppiptr = &pppi; //pppiptr是一个指向常量对象的常量指针
+
+    *pppi = 2.72; //错误：pppi是一个指向常量的指针  pppi是一个指向常量的常量指针，则指针本身和指向的对象都不能变
+
+    if (*curErr) {
+        *curErr = 0; //正确：把curErr所指向的对象的值重置
+        curErr = &pi; //错误：curErr本身是常量 不能变！
+    }
 
     return 0;
 }
