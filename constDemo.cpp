@@ -40,5 +40,18 @@ int main() {
     testi = 0;
     std::cout << testi << "    " << testri2 << std::endl; // 0  0
     testri2 = 10; // 错误 testri2 是常量引用
+
+    const double pi = 3.14;
+    double *ptr = &pi;// 错误：ptr是一个普通指针
+    const double *cptr = &pi; //正确：cptr可以指向一个双精度常量
+    *cptr = 42;//错误：不能给*cptr赋值
+
+    //指针的类型必须与其所指对象的类型一致，有两个例外：
+    //1.允许一个指向常量的指针指向一个非常量对象
+    double dvava = 3.14;
+    cptr = &dvava; //正确：但是不能通过cptr改变dvava的值 下面语句是错误的
+    *cptr = 314;
+    //指向常量的指针也没有规定其所指的对象必须是一个常量。指向常量的指针仅仅要求不能通过该指针改变对象的值，没有规定那个对象的值不能通过其他途径改变
+
     return 0;
 }
