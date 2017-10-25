@@ -28,6 +28,16 @@ int main() {
     const int thirty = 30;
 //    r = thirty; //错误
 
+    i = ci;// 正确，ci是一个顶层const
+    p2 = p3;//正确：p2和p3指向的对象类型相同，p3顶层const的部分不影响
+
+    //底层const限制不能忽视，当执行对象的拷贝时，拷入和拷出的对象必须具有相同的底层const资格，或者两个对象的数据类型能够转换。一般来说，非常量可以转换成常量，反之不行
+    int *p = p3;//p3包含底层const的定义，而p没有
+    p2 = p3;//正确：p2和p3都是底层const
+    p2 = &i;//正确：int*能转换成const int *
+    int &r = ci;//错误：普通的int&不能绑定到int常量上
+    const int &r2 = i;//正确：const int&可以绑定到一个普通int值上
+
 
     return 0;
 }
