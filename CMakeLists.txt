@@ -3,5 +3,5 @@ project(practice)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES type_alias.cpp)
+set(SOURCE_FILES auto_demo.cpp)
 add_executable(practice ${SOURCE_FILES})
