@@ -5,7 +5,6 @@
 int j = 0;
 constexpr int i = 42; //i的类型是整型常量
 int main() {
-
     const int max_files = 20; //max_files是常量表达式
     const int limit = max_files + 1; //limit是常量表达式
     int staff_size = 27; //staff_size不是常量表达式
