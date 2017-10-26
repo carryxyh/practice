@@ -3,5 +3,5 @@ project(practice)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES decltype_demo.cpp)
+set(SOURCE_FILES struct_demo.cpp)
 add_executable(practice ${SOURCE_FILES})
