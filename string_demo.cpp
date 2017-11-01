@@ -2,6 +2,7 @@
 // Created by 修宇航 on 2017/11/1.
 //
 #include <string>
+#include <iostream>
 
 using std::string;
 
@@ -21,6 +22,13 @@ int main() {
 
     //c++不支持如下写法：
 //    string sss = "hello" + " world";
+
+    //引用处理字符串
+    string string1("hello world");
+    for (auto &c : string1) {
+        c = toupper(c); //c是一个引用，赋值语句改变string1中的字符的值
+    }
+    std::cout << string1 << std::endl;
 
     return 0;
 }
