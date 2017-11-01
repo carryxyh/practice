@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-using std::cin
+using std::cin;
 
 int main() {
 
