@@ -19,5 +19,8 @@ int main() {
 //    getline(is,s) 从is读取一行赋给s，返回is
     //其他操作与 java 类似  s.empty();空返回true s.size s[n] s1+s2 s1=s2 s1==s2大小写敏感
 
+    //c++不支持如下写法：
+//    string sss = "hello" + " world";
+
     return 0;
 }
