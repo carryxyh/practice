@@ -38,6 +38,7 @@ int main() {
     //++iter 令iter指向容器中的下一个元素
     //--iter 令iter指向容器中的上一个元素
     //iter1 == iter2 两个迭代器是否相等 如果两个迭代器指向的是同一个元素，或者他们是同一个容器的尾后迭代器，则相等。
+    //iter1 - iter2 他们之间的距离
 
     //ex
     string s("some string");
@@ -59,6 +60,27 @@ int main() {
 
     //begin 和 end 返回的具体类型由对象是否是常量决定，对象是常量，begin和end返回const_vector，否则返回iterator
     auto itconst = ivec.cbegin(); //直接返回const_iterator
+    //iter -> empty() 等价于 (*iter).empty()  *iter.empty()是错误，这个相当于运行iterator的empty方法
+
+    //使用了迭代器的循环体，都不能向迭代器所属的容器中添加元素
+
+    //--------------------------------------------
+
+    //要查找10
+    int search = 10;
+
+    //必须有序，无序需要排序
+    vector<int> order_vec;
+    auto beg = order_vec.begin(), end = order_vec.end();
+    auto mid = order_vec.begin() + (end - beg) / 2; //中间点
+
+    while (mid != end && *mid != search) {
+        if (search < *mid) {
+            end = mid;
+        } else
+            beg = mid + 1;
+        mid = beg + (end - beg) / 2;
+    }
 
     return 0;
 }
