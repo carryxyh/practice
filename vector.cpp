@@ -46,5 +46,19 @@ int main() {
         *it = toupper(*it); // 将当前字符改成大写
     }
 
+    for (auto it = s.begin(); it != s.end() && !isspace(*it); ++it) {
+        *it = toupper(*it);
+    }
+
+    //------------------------------------------
+    vector<int>::iterator iterator1; //iterator1能读写vector<int>的元素
+    string::iterator iterator2; //iterator2能读写string对象中的字符
+    vector<int>::const_iterator iterator3; //iterator3只能读元素，不能写元素
+    string::const_iterator iterator4; //iterator4只能读字符，不能写字符
+    //如果一个string或者vector是常量，则只能使用const_iterator
+
+    //begin 和 end 返回的具体类型由对象是否是常量决定，对象是常量，begin和end返回const_vector，否则返回iterator
+    auto itconst = ivec.cbegin(); //直接返回const_iterator
+
     return 0;
 }
