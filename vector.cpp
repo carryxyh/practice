@@ -75,9 +75,9 @@ int main() {
     auto mid = order_vec.begin() + (end - beg) / 2; //中间点
 
     while (mid != end && *mid != search) {
-        if (search < *mid) {
+        if (search < *mid)
             end = mid;
-        } else
+        else
             beg = mid + 1;
         mid = beg + (end - beg) / 2;
     }
