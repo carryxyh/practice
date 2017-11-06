@@ -4,7 +4,8 @@
 
 #include <string>
 
-using std::string;
+using namespace std;
+
 
 int main() {
     const char a4[6] = "Daniel"; //错误：尽管字面值 Daniel看起来只有六个字符，但是必须数组长度至少为7，六个放字面量，一个放空字符
@@ -29,6 +30,12 @@ int main() {
 //    上面一句等价于：auto ia2(&ia[0]);
 
     decltype(ia) ia3 = {0, 1, 2}; //decltype(ia)返回的类型是由10个整数构成的数组
+
+    int *beg = begin(ia); //指向ia的首元素的指针
+    int *las = end(ia); //指向ia尾元素的下一位置的指针
+    //循环找第一个负数
+    while (beg != las && *beg >= 0)
+        beg++;
 
     return 0;
 }
