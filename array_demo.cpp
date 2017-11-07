@@ -37,5 +37,24 @@ int main() {
     while (beg != las && *beg >= 0)
         beg++;
 
+    //指针运算------------------------------------------------
+
+    //给一个指针加上（减去）某整数，结果仍是指针，新指针指向的元素与原来的指针相比前进了（后退了）该整数值个位置：
+    constexpr size_t sz = 5;
+    int arrp[sz] = {1, 2, 3, 4, 5};
+    int *pc = arrp; //等价于 int *pc = &arrp[0]
+    int *pc2 = pc + 4; //ip2指向arrp的尾元素arrp[4]
+
+    auto n = end(arrp) - begin(arrp); //n的值5，也就是arr中元素的数量
+    //n的类型是 ptrdiff_t 的标准库类型（带符号），和size_t一样
+
+    int iii = 0, szzz = 42;
+    int *ppp = &iii, *eee = &szzz;
+    //ppp 和 eee 毫无关系，比较二者无意义
+    //两个空指针相减，结果为0
+    while (ppp < eee) {
+
+    }
+
     return 0;
 }
