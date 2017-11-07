@@ -45,6 +45,9 @@ int main() {
     int *pc = arrp; //等价于 int *pc = &arrp[0]
     int *pc2 = pc + 4; //ip2指向arrp的尾元素arrp[4]
 
+    //允许解引用
+    int last = *(pc + 4); //last = 5
+
     auto n = end(arrp) - begin(arrp); //n的值5，也就是arr中元素的数量
     //n的类型是 ptrdiff_t 的标准库类型（带符号），和size_t一样
 
@@ -55,6 +58,7 @@ int main() {
     while (ppp < eee) {
 
     }
+
 
     return 0;
 }
