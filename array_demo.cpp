@@ -45,6 +45,9 @@ int main() {
     int *pc = arrp; //等价于 int *pc = &arrp[0]
     int *pc2 = pc + 4; //ip2指向arrp的尾元素arrp[4]
 
+    int j = pc[1]; //等价于 *(pc + 1)
+    int k = pc[-2]; //等价于 pc[pc - 2]
+
     //允许解引用
     int last = *(pc + 4); //last = 5
 
