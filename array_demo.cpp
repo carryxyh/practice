@@ -68,5 +68,8 @@ int main() {
     int int_arr[] = {1, 2, 3, 4, 5, 6};
     vector<int> iiivec(begin(int_arr), end(int_arr));
 
+    //用一部分初始化 2 3 4
+    vector<int> subvec(int_arr + 1, int_arr + 4);
+
     return 0;
 }
