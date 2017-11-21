@@ -13,6 +13,7 @@ int main() {
     string s4(10, 'c'); //cccccccccc 直接初始化
     string s5 = string(10, 'c'); //拷贝 这个string是临时对象用于拷贝
 
+
     //------------------------------------
 
 //    os << s s写到输出流os当中，返回os
