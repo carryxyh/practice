@@ -3,6 +3,7 @@
 //
 
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -62,6 +63,10 @@ int main() {
 
     }
 
+
+    //使用数组初始化vector,但是不能用vector初始化vector
+    int int_arr[] = {1, 2, 3, 4, 5, 6};
+    vector<int> iiivec(begin(int_arr), end(int_arr));
 
     return 0;
 }
