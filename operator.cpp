@@ -16,6 +16,7 @@ int main() {
     std::cout << *ia << std::endl; //0
     std::cout << ia << std::endl; //地址
 
+
     int i = 0;
     std::cout << i << "  " << ++i << std::endl; //<<运算符没有规定顺序，可能先 i 后 ++i 也可能返回来
     return 0;
