@@ -4,6 +4,9 @@
 
 #include "iostream"
 #include "Sales_data.h"
+#include "vector"
+
+using namespace std;
 
 int main() {
     int *p;
@@ -32,5 +35,10 @@ int main() {
     sizeof *pointer; //pointer所指类型的空间大小，及sizeof(Sales_data)
     sizeof data.revenue; //Sales_data的revenuec成员对应类型的大小
     sizeof Sales_data::revenue; //另一种获取revenue大小的方式
+
+    //sizeof 对数组进行处理时  不会把数组处理成指针
+    //sizeof 对string或者vector对象执行，返回该类型固定部分的大小，并不是对象中的元素占用了多少空间
+    constexpr size_t sz = sizeof(ia) / sizeof(*ia); //返回数组中有多少元素
+
     return 0;
 }
