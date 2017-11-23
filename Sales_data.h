@@ -6,6 +6,9 @@
 #define SALES_DATA_H //把一个名字设为预处理变量
 
 #include <string>
+#include "vector"
+
+using namespace std;
 
 struct Sales_data {
     std::string bookNo;
@@ -13,3 +16,6 @@ struct Sales_data {
     double revenue = 0.0;
 };
 #endif //SALES_DATA_H
+
+//声明一个函数，还未定义
+void print(vector<int>::const_iterator beg, vector<int>::const_iterator end);
