@@ -53,6 +53,13 @@ string::size_type find_char2(string &s, char c, string::size_type &occurs) {
     return ret;
 }
 
+//字符结尾有一个空字符
+void print(const char *cp) {
+    if (cp) //若cp不是一个空指针
+        while (*cp) //只要指针所指的字符不是空字符
+            cout << *cp++; //输出当前字符 并将指针向前移动一个位置
+}
+
 bool is_sentence(const string &s) {
     string::size_type ctr = 0;
     //如果 find_char 的第一个参数类型是 string& 那么下面这句调用会发生编译时错误 因find_char只能接受普通引用
