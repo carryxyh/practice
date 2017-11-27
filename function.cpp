@@ -60,6 +60,15 @@ bool is_sentence(const string &s) {
     return find_char(s, '.', ctr) == s.size() - 1 && ctr == 1;
 }
 
+//尽管形式不同，但三个print的函数等价 每一个print都有一个const int*的形参
+//void print(const int*);
+//void print(const int[]);
+//void print(const int[10]);
+//当调用 print 的时候 只检查入参是否是 const int*
+//int i=0,j[2] = {0,1}
+// print(&i) 和 print(j) 都正确
+
+
 int main() {
 
     for (size_t i = 0; i != 10; i++) {
@@ -79,6 +88,8 @@ int main() {
     //我们要把不会改变的参数定义成 const 的
 //    string::size_type ret2 = find_char2("Hello World", 'o', ctr);
 
-
+    //数组的两个特殊性质对我们定义和使用作用在数组上的函数有影响，这两个性质是：
+    //1.不允许拷贝数组
+    //2.使用数组时，通常会将其转换成指针
 }
 
