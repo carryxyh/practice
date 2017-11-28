@@ -5,6 +5,7 @@
 #include "iostream"
 
 using std::string;
+using std::initializer_list;
 
 using std::cout;
 using std::endl;
@@ -79,6 +80,29 @@ bool is_sentence(const string &s) {
 //第一个：包含十个引用的数组 错误
 //第二个：具有十个整数的整形数组的引用 正确
 
+//可变形参只能放在最后一个
+void multiParam(...);
+
+/**
+ * 函数完成以后，所占的存储空间将被释放，因此函数结束意味着局部变量的引用将指向不再有效的内存区域
+ * 总而言之，不要反悔局部对象的引用或指针
+ */
+const string &mainip() {
+    string ret;
+    if (!ret.empty())
+        return ret; //错误，返回局部变量的引用
+    else
+        return "Empty"; //错误，"Empty"是一个局部临时变量
+}
+
+int (*func(int i))[10];
+//func(int i) 表示调用func函数需要一个int类型的参数
+//(*func(int i))意味着我们可以对函数func调用的结果执行解引用操作
+//(*func(int i))[10]表示解引用func的调用将得到一个大小是10的数组
+//int (*func(int i))[10] 表示数组中的元素是int类型
+
+//auto func(int i) -> int(*)[10];这种方式等价于上面这种 可以清楚的看到入参和出参 出参是一个指向含有是个整数的数组
+
 int main() {
 
     for (size_t i = 0; i != 10; i++) {
@@ -101,5 +125,10 @@ int main() {
     //数组的两个特殊性质对我们定义和使用作用在数组上的函数有影响，这两个性质是：
     //1.不允许拷贝数组
     //2.使用数组时，通常会将其转换成指针
+
+    //----------------------------------------------------------------------------
+    //如果一个函数的入参数量不定，但是类型一样，可以用这个list
+    //lst中的值全都是常量，无法改变其中的值
+    initializer_list<int> lst;
 }
 
