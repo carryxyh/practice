@@ -75,6 +75,9 @@ bool is_sentence(const string &s) {
 //int i=0,j[2] = {0,1}
 // print(&i) 和 print(j) 都正确
 
+//function(int &arr[10])  和  function(int (&arr)[10])
+//第一个：包含十个引用的数组 错误
+//第二个：具有十个整数的整形数组的引用 正确
 
 int main() {
 
