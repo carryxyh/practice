@@ -3,6 +3,6 @@ project(practice)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES function.cpp
+set(SOURCE_FILES overide.cpp
         Sales_data.h)
 add_executable(practice ${SOURCE_FILES})
