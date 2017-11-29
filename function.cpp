@@ -103,6 +103,20 @@ int (*func(int i))[10];
 
 //auto func(int i) -> int(*)[10];这种方式等价于上面这种 可以清楚的看到入参和出参 出参是一个指向含有是个整数的数组
 
+//const_cast在重载中的应用
+//第一个shorterString函数，可以传入两个非常量string引用，单结果是const string的引用
+const string &shorterString(const string &s1, const string &s2) {
+    return s1.size() <= s2.size() ? s1 : s2;
+}
+
+//当它的参数不是常量时，得到的结果是一个普通的引用
+string &shorterString(string &s1, string &s2) {
+    //这个r是一个cosnt string的引用，但是本来是绑定在一个普通引用上
+    auto &r = shorterString(const_cast<const string &>(s1), const_cast<const string &>(s2));
+    //这里强转是安全的
+    return const_cast<string &>(r);
+}
+
 int main() {
 
     for (size_t i = 0; i != 10; i++) {
