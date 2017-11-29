@@ -12,6 +12,19 @@ void ff(int *);
 
 void ff(unsigned int);
 
+//这里这个pf就是指向函数的指针
+//下面两句等价
+void useBigger(const string &s1, const string &s2, bool pf(const string &, const string &));
+
+void useBigger(const string &s1, const string &s2, bool (*pf)(const string &, const string &));
+
+//入参是int 返回值是一个函数指针
+//下面两句等价，第一句太复杂了 使用第二句
+int (*f1(int))(int *, int);
+
+//后面部分是返回值
+auto f1(int) -> int (*)(int *, int);
+
 int main() {
 
     //pf前面有*说明pf是指针，右侧是形参列表，表示指向的是函数，左侧，发现函数的返回值是布尔值
