@@ -22,6 +22,26 @@ void fooBar(int ival) {
     print(3.14); //正确：调用print(int); print(double)被隐藏了
 }
 
+typedef string::size_type sz;
+
+//默认值
+//注意：一旦某个参数被赋予了默认值，它后面的所有参数都必须有默认值
+//调用时：只能省略靠右的参数 ex:screen(20) = screen(20,80,' ')
+string screen(sz ht = 24, sz wid = 80, char backgrnd = ' ');
+
+sz wd = 80;
+char def = ' ';
+
+sz ht();
+
+string screen(sz = ht(), sz = wd, char = def);
+
+void f2() {
+    def = '*'; //改变了默认实参的值
+    sz wd = 100;
+    screen(); //调用screen(ht(),80,'*')
+}
+
 int main() {
 
 }
