@@ -25,6 +25,16 @@ int (*f1(int))(int *, int);
 //后面部分是返回值
 auto f1(int) -> int (*)(int *, int);
 
+//下面这两个函数除了函数名都一样
+string::size_type sumLength(const string &, const string &);
+
+string::size_type largerLength(const string &, const string &);
+
+//getFcn返回指向sumLength或者largerLength的指针  注意 getFcn前面有个*
+//decltype作用函数，返回函数类型而不是指针类型，因此我们需要显示的加上*
+decltype(sumLength) *getFcn(const string &);
+
+
 int main() {
 
     //pf前面有*说明pf是指针，右侧是形参列表，表示指向的是函数，左侧，发现函数的返回值是布尔值
