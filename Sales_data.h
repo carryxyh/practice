@@ -14,7 +14,25 @@ struct Sales_data {
     std::string bookNo;
     unsigned units_sold = 0;
     double revenue = 0.0;
+
+    //这里isbn后面的const的作用：使得函数中使用的this是一个常量
+    std::string isbn() const {
+
+//        return this->bookNo;等价于下面那句 this是一个常量指针，指向这个对象
+        return bookNo;
+    }
+
+    Sales_data &combine(const Sales_data &);
+
+    double avg_price() const;
 };
+
+Sales_data add(const Sales_data &, const Sales_data &);
+
+std::ostream &print(std::ostream &, const Sales_data &);
+
+std::istream &read(std::istream &, Sales_data &);
+
 #endif //SALES_DATA_H
 
 //声明一个函数，还未定义
