@@ -37,7 +37,7 @@ std::ostream &print(std::ostream &os, const Sales_data &item) {
 Sales_data add(const Sales_data &lhs, const Sales_data &rhs) {
     Sales_data sum = lhs;
     sum.combine(rhs);
-    return sum;
+    return sum; //返回 sum 的副本
 }
 
 int main() {

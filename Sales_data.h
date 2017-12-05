@@ -11,7 +11,7 @@
 using namespace std;
 
 struct Sales_data {
-    std::string bookNo;
+    string bookNo;
     unsigned units_sold = 0;
     double revenue = 0.0;
 
@@ -25,6 +25,11 @@ struct Sales_data {
     Sales_data &combine(const Sales_data &);
 
     double avg_price() const;
+
+    //构造函数
+    Sales_data() = default;
+
+    Sales_data(const string &s) : bookNo(s) {};
 };
 
 Sales_data add(const Sales_data &, const Sales_data &);
