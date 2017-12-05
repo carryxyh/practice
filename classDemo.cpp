@@ -2,8 +2,12 @@
 // Created by 修宇航 on 2017/12/4.
 //
 
-#include "Sales_data"
+#include <iostream>
+#include "Sales_data.h"
 
+using namespace std;
+
+//在类的外部定义成员函数，必须加上所属的类名
 double Sales_data::avg_price() const {
     if (units_sold)
         return revenue / units_sold;
@@ -11,6 +15,45 @@ double Sales_data::avg_price() const {
         return 0;
 }
 
-int main() {
+Sales_data &Sales_data::combine(const Sales_data &rhs) {
+    units_sold += rhs.units_sold;
+    revenue += rhs.revenue;
+    return *this; //返回调用该函数的对象
+}
 
+//print和read接收的都是普通引用，因为要对流和对象进行修改
+std::istream &read(std::istream &is, Sales_data &item) {
+    double price = 0;
+    is >> item.bookNo >> item.units_sold >> price;
+    item.revenue = price * item.units_sold;
+    return is;
+}
+
+std::ostream &print(std::ostream &os, const Sales_data &item) {
+    os << item.isbn() << " " << item.units_sold << " " << item.revenue << " " << item.avg_price();
+    return os;
+}
+
+Sales_data add(const Sales_data &lhs, const Sales_data &rhs) {
+    Sales_data sum = lhs;
+    sum.combine(rhs);
+    return sum;
+}
+
+int main() {
+    Sales_data total;
+    if (read(cin, total)) {
+        Sales_data trans;
+        while (read(cin, trans)) {
+            if (total.isbn() == trans.isbn())
+                total.combine(trans);
+            else {
+                print(cout, total) << endl;
+                total = trans;
+            }
+        }
+        print(cout, total) << endl;
+    } else {
+        cerr << "No data ?!" << endl;
+    }
 }
