@@ -26,10 +26,15 @@ struct Sales_data {
 
     double avg_price() const;
 
-    //构造函数
+    //下面的四个都是构造函数
+    //default 默认构造函数
     Sales_data() = default;
 
     Sales_data(const string &s) : bookNo(s) {};
+
+    Sales_data(const std::string &s, unsigned n, double p) : bookNo(s), units_sold(n), revenue(p * n) {}
+
+    Sales_data(std::istream &);
 };
 
 Sales_data add(const Sales_data &, const Sales_data &);
