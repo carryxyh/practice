@@ -28,7 +28,7 @@ class Sales_data {
 
 public:
     //下面的四个都是构造函数
-    //default 默认构造函数
+    //default 默认构造函数 如果有其他构造函数，则本函数是必须的
     Sales_data() = default;
 
     Sales_data(const string &s) : bookNo(s) {};
@@ -64,6 +64,37 @@ Sales_data add(const Sales_data &, const Sales_data &);
 std::ostream &print(std::ostream &, const Sales_data &);
 
 std::istream &read(std::istream &, Sales_data &);
+
+class Screen {
+public:
+
+    typedef std::string::size_type pos;
+    //using pos = std::string::size_type; 和上面一句等价
+
+    Screen() = default;
+
+    Screen(pos ht, pos wd, char c) : height(ht), width(wd), contents(ht * wd, c) {}
+
+    char get() const { return contents[cursor]; } //隐式内联
+
+    inline char get(pos ht, pos wd) const; //显示内联 这个get重载了上面一个get
+
+    Screen &move(pos r, pos c); //能在之后被设为内联
+
+    void some_member() const;
+
+private:
+    pos cursor = 0;
+    pos height = 0, width = 0;
+    std::string contents;
+
+    mutable size_t access_ctr; //即使在一个const对象内也能被修改
+};
+
+// some_member 是一个const成员函数，它艺人能够改变access_ctr的值。access_ctr是可变成员，const函数都可以改变它的值
+void Screen::some_member() const {
+    ++access_ctr;
+}
 
 #endif //SALES_DATA_H
 
