@@ -16,18 +16,15 @@ using namespace std;
 //struct Sales_data {
 class Sales_data {
 
-private:
-    string bookNo;
-    unsigned units_sold = 0;
-    double revenue = 0.0;
+    //为Sales_data的非成员函数所做的友元声明
+    //因为这三个函数中 直接使用了形如Sales_data.bookNo的访问方式
+    //友元的作用：允许其他类或者函数访问它的非公有（private）成员，并且友元不是类的成员，也不受所在区域访问控制级别的约束
+    //在这里声明之后，还需要在别的地方声明函数，否则是无法定义函数的！及类外面必须有 Sales_data add(const Sales_data &, const Sales_data &) 的声明
+    friend Sales_data add(const Sales_data &, const Sales_data &);
 
-    double avg_price() const {
-        if (units_sold)
-            return revenue / units_sold;
-        else
-            return 0;
-    }
+    friend std::ostream &print(std::ostream &, const Sales_data &);
 
+    friend std::istream &read(std::istream &, Sales_data &);
 
 public:
     //下面的四个都是构造函数
@@ -48,6 +45,18 @@ public:
     }
 
     Sales_data &combine(const Sales_data &);
+
+private:
+    string bookNo;
+    unsigned units_sold = 0;
+    double revenue = 0.0;
+
+    double avg_price() const {
+        if (units_sold)
+            return revenue / units_sold;
+        else
+            return 0;
+    }
 };
 
 Sales_data add(const Sales_data &, const Sales_data &);
