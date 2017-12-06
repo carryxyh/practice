@@ -8,12 +8,12 @@
 using namespace std;
 
 //在类的外部定义成员函数，必须加上所属的类名
-double Sales_data::avg_price() const {
-    if (units_sold)
-        return revenue / units_sold;
-    else
-        return 0;
-}
+//double Sales_data::avg_price() const {
+//    if (units_sold)
+//        return revenue / units_sold;
+//    else
+//        return 0;
+//}
 
 Sales_data &Sales_data::combine(const Sales_data &rhs) {
     units_sold += rhs.units_sold;
@@ -38,6 +38,11 @@ Sales_data add(const Sales_data &lhs, const Sales_data &rhs) {
     Sales_data sum = lhs;
     sum.combine(rhs);
     return sum; //返回 sum 的副本
+}
+
+//在类的外部定义构造函数
+Sales_data::Sales_data(std::istream &is) {
+    read(is, *this);
 }
 
 int main() {

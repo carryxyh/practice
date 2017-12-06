@@ -10,22 +10,26 @@
 
 using namespace std;
 
-struct Sales_data {
+//class 和 struct ：class可以在它的第一个访问说明符之前定义成员，访问权限依赖于类定义的方式
+//                  struct则定义在第一个访问说明符之前的成员是public，使用class则为private
+// 使用class还是struct：所有成员都是public用struct否则用class
+//struct Sales_data {
+class Sales_data {
+
+private:
     string bookNo;
     unsigned units_sold = 0;
     double revenue = 0.0;
 
-    //这里isbn后面的const的作用：使得函数中使用的this是一个常量
-    std::string isbn() const {
-
-//        return this->bookNo;等价于下面那句 this是一个常量指针，指向这个对象
-        return bookNo;
+    double avg_price() const {
+        if (units_sold)
+            return revenue / units_sold;
+        else
+            return 0;
     }
 
-    Sales_data &combine(const Sales_data &);
 
-    double avg_price() const;
-
+public:
     //下面的四个都是构造函数
     //default 默认构造函数
     Sales_data() = default;
@@ -35,6 +39,15 @@ struct Sales_data {
     Sales_data(const std::string &s, unsigned n, double p) : bookNo(s), units_sold(n), revenue(p * n) {}
 
     Sales_data(std::istream &);
+
+    //这里isbn后面的const的作用：使得函数中使用的this是一个常量
+    std::string isbn() const {
+
+//        return this->bookNo;等价于下面那句 this是一个常量指针，指向这个对象
+        return bookNo;
+    }
+
+    Sales_data &combine(const Sales_data &);
 };
 
 Sales_data add(const Sales_data &, const Sales_data &);
