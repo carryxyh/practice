@@ -83,6 +83,10 @@ public:
 
     void some_member() const;
 
+    Screen &set(char);
+
+    Screen &set(pos, pos, char);
+
 private:
     pos cursor = 0;
     pos height = 0, width = 0;
@@ -91,10 +95,27 @@ private:
     mutable size_t access_ctr; //即使在一个const对象内也能被修改
 };
 
+inline Screen &Screen::set(char c) {
+    contents[cursor] = c;
+    return *this;
+}
+
+//如果返回的是Screen 不是 Screen & 则返回的是Screen的值的拷贝
+inline Screen &Screen::set(pos r, pos col, char ch) {
+    contents[r * width + col] = ch;
+    return *this;
+}
+
 // some_member 是一个const成员函数，它艺人能够改变access_ctr的值。access_ctr是可变成员，const函数都可以改变它的值
 void Screen::some_member() const {
     ++access_ctr;
 }
+
+class Window_mgr {
+private:
+    std::vector<Screen> screens{Screen(24, 80, ' ')};
+
+};
 
 #endif //SALES_DATA_H
 
