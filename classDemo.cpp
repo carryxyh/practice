@@ -61,4 +61,15 @@ int main() {
     } else {
         cerr << "No data ?!" << endl;
     }
+
+    Screen::pos ht = 24, wd = 80;
 }
+
+class A {
+
+    using Unit = std::vector<int>::size_type;
+};
+
+class B {
+    A::Unit a;
+};

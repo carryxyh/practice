@@ -65,7 +65,31 @@ std::ostream &print(std::ostream &, const Sales_data &);
 
 std::istream &read(std::istream &, Sales_data &);
 
+class Window_mgr {
+
+public:
+    using ScreenIndex = std::vector<Screen>::size_type;
+
+    void clear(ScreenIndex);
+
+private:
+    std::vector<Screen> screens{Screen(24, 80, ' ')};
+
+};
+
+void Window_mgr::clear(ScreenIndex i) {
+    Screen &s = screens[i];
+    s.contents = string(s.height * s.width, ' ');
+}
+
 class Screen {
+
+    //Window_mgr的成员可以访问Screen的私有部分
+    friend class Window_mgr;
+
+    //函数成员友元，只有clear中能访问Screen的私有部分
+    friend void Window_mgr::clear(Window_mgr::ScreenIndex);
+
 public:
 
     typedef std::string::size_type pos;
@@ -127,11 +151,21 @@ void Screen::some_member() const {
     ++access_ctr;
 }
 
-class Window_mgr {
-private:
-    std::vector<Screen> screens{Screen(24, 80, ' ')};
+struct X {
+    friend void f() {}
 
+    X() { f(); } //错误 f还没声明
+
+    void g();
+
+    void h();
 };
+
+void X::g() { return f(); } //错误，这里f也没声明
+
+void f();
+
+void X::h() { return f(); } //正确，f声明了
 
 #endif //SALES_DATA_H
 
