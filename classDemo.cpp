@@ -73,3 +73,13 @@ class A {
 class B {
     A::Unit a;
 };
+
+class ConstRef {
+public:
+    ConstRef(int ii);
+
+private:
+    int i;
+    const int ci;
+    int &ri;
+};
