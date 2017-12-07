@@ -87,12 +87,28 @@ public:
 
     Screen &set(pos, pos, char);
 
+    //Screen myScreen(5,3);
+    //const Screen blank(5,3);
+    //myScreen.set('#').display(cout); //调用非常量版本
+    //blank.display(cout); //调用常量版本
+    Screen &display(std::ostream &os) {
+        do_display(os);
+        return *this;
+    }
+
+    const Screen &display(std::ostream &os) const {
+        do_display(os);
+        return *this;
+    }
+
 private:
     pos cursor = 0;
     pos height = 0, width = 0;
     std::string contents;
 
     mutable size_t access_ctr; //即使在一个const对象内也能被修改
+
+    void do_display(std::ostream &os) const { os << contents; }
 };
 
 inline Screen &Screen::set(char c) {
