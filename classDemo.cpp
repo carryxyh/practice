@@ -80,6 +80,18 @@ public:
 
 private:
     int i;
+
+    //ci 和 ri 都必须被初始化，因此我们没有为它们提供构造函数初始值的话将报错
     const int ci;
     int &ri;
 };
+
+//正确：显示的初始化引用和const成员
+ConstRef::ConstRef(int ii) : i(ii), ci(ii), ri(ii) {}
+
+//下面这个函数是错误的 报错
+ConstRef::ConstRef(int ii) {
+    i = ii; //正确
+    ci = ii; //错误：不能给const赋值
+    ri = i; //错误：ri没被初始化
+}
