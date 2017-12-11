@@ -95,3 +95,23 @@ ConstRef::ConstRef(int ii) {
     ci = ii; //错误：不能给const赋值
     ri = i; //错误：ri没被初始化
 }
+
+class Sales_data2 {
+public:
+    //非委托构造函数使用对应的实参初始化成员
+    Sales_data2(const std::string &s, unsigned n, double p) : bookNo(s), units_sold(n), revenue(p * n) {}
+
+    //其余构造函数全部委托给另一个构造函数
+    Sales_data2() : Sales_data2("", 0, 0) {}
+
+    Sales_data2(std::string s) : Sales_data2(s, 0, 0) {}
+
+    Sales_data2(std::istream &is) : Sales_data2() {
+        read(is, *this);
+    }
+
+private:
+    string bookNo;
+    unsigned units_sold = 0;
+    double revenue = 0.0;
+};

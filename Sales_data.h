@@ -33,8 +33,6 @@ public:
 
     Sales_data(const string &s) : bookNo(s) {};
 
-    Sales_data(const std::string &s, unsigned n, double p) : bookNo(s), units_sold(n), revenue(p * n) {}
-
     Sales_data(std::istream &);
 
     //这里isbn后面的const的作用：使得函数中使用的this是一个常量
@@ -45,6 +43,9 @@ public:
     }
 
     Sales_data &combine(const Sales_data &);
+
+    //非委托构造函数使用对应的实参初始化成员
+    Sales_data(const std::string &s, unsigned n, double p) : bookNo(s), units_sold(n), revenue(p * n) {}
 
 private:
     string bookNo;
