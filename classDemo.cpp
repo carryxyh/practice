@@ -63,6 +63,16 @@ int main() {
     }
 
     Screen::pos ht = 24, wd = 80;
+
+    Sales_data obj(); //正确：定义了一个函数而不是对象
+//    obj.isbn(); 错误：obj是一个函数`
+
+    Sales_data item;
+    string null_book = "9-999-9999-9";
+
+    //这里发生了隐式转换。因为Sales_data有一个只有string作为入参的构造函数，我们需要使用Sales_data的地方，可以用string或者istream作为替代
+    //combine参数是一个常量引用，所以我们可以给该参数传递一个临时量.这里的null_book被转成Sales_data tmp(null_book)
+    item.combine(null_book);
 }
 
 class A {
@@ -114,4 +124,20 @@ private:
     string bookNo;
     unsigned units_sold = 0;
     double revenue = 0.0;
+};
+
+//没有默认构造函数
+class NoDefault {
+public:
+    NoDefault(const std::string &);
+};
+
+struct A {
+    NoDefault my_mem;
+};
+A a; //错误：不能为A合成构造函数
+
+struct B {
+    B() {} //错误：b_member没有初始值
+    NoDefault b_member;
 };
