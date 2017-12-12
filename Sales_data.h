@@ -35,6 +35,11 @@ public:
 
     Sales_data(std::istream &);
 
+    //如果加上explicit 则这个构造函数不能隐式类型转换.并且这个explicit只对一个参数的构造函数有效,并且explicit只能在类内声明构造函数世使用
+    //explicit只能用于直接初始化
+    //Sales_data item2 = null_book; 错误。不能将explicit构造函数用于拷贝形式的初始化过程
+//    explicit Sales_data(std::istream &);
+
     //这里isbn后面的const的作用：使得函数中使用的this是一个常量
     std::string isbn() const {
 

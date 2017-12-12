@@ -73,6 +73,13 @@ int main() {
     //这里发生了隐式转换。因为Sales_data有一个只有string作为入参的构造函数，我们需要使用Sales_data的地方，可以用string或者istream作为替代
     //combine参数是一个常量引用，所以我们可以给该参数传递一个临时量.这里的null_book被转成Sales_data tmp(null_book)
     item.combine(null_book);
+
+    //编译器只允许一次类型转换，这种就是错误的
+    item.combine("abcabc-abc-abcde");
+    //正确
+    item.combine(string("abcabc-abc-abcde"));
+    //正确
+    item.combine(Sales_data("abcabc-abc-abcde"));
 }
 
 class A {
