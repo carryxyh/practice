@@ -27,6 +27,16 @@ void Account::rate(double newRate) {
     interestRate = newRate;
 }
 
+double Account::initRate() {
+    return 3.14;
+}
+
+//定义了名为interestRate的对象，对象是类Account的静态成员 类型是double
+//从  Account::  开始后面的部分都位于Account的作用域之内了，因此我们可以直接使用initRate函数，注意这是私有的函数！
+//interestRate也可以访问类的私有成员
+//这句话不能放在函数里。报错
+double Account::interestRate = initRate();
+
 int main() {
     double r;
     //直接用作用域运算符访问
@@ -37,9 +47,4 @@ int main() {
 
     r = ac1.rate(); //通过对象或引用
     r = ac2->rate(); //通过指向对象的指针
-
-    //定义了名为interestRate的对象，对象是类Account的静态成员 类型是double
-    //从  Account::  开始后面的部分都位于Account的作用域之内了，因此我们可以直接使用initRate函数，注意这是私有的函数！
-    //interestRate也可以访问类的私有成员
-    double Account::interestRate = initRate();
 }
