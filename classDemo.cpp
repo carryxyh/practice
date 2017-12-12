@@ -88,6 +88,11 @@ int main() {
     //值的顺序要按照成员的顺序
     Data dat = {0, "Anna"};
     //错误的 Data dat2 = {"Anna", 0};
+
+
+    //constexpr表达式的构造函数用于生成constexpr对象以及constexpr函数的参数或返回类型
+    constexpr Debug io_sub(false, true, false);
+
 }
 
 /**
@@ -167,4 +172,21 @@ A a; //错误：不能为A合成构造函数
 struct B {
     B() {} //错误：b_member没有初始值
     NoDefault b_member;
+};
+
+class Debug {
+public:
+    constexpr Debug(bool b = true) : hw(b), io(b), other(b) {}
+
+    //constexpr构造函数必须既符合构造函数要求（不能包含返回值）又符合constexpr函数的要求（意味着它拥有的唯一可执行的语句就是返回语句）
+    //所以一般constexpr 构造函数都是空的
+    //constexpr必须初始化所有的成员，初始值或者使用constexpr构造函数，或者是一条常量表达式
+    constexpr Debug(bool h, bool i, bool o) : hw(h), io(i), other(o) {}
+
+    constexpr bool any() { return hw || io || other; }
+
+private:
+    bool hw;
+    bool io;
+    bool other;
 };
