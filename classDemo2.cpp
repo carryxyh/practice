@@ -27,9 +27,10 @@ void Account::rate(double newRate) {
     interestRate = newRate;
 }
 
-double Account::initRate() {
-    return 3.14;
-}
+//这里即使不定义initRate函数，下面：double Account::interestRate = initRate(); 这句依然有效
+//double Account::initRate() {
+//    return 3.14;
+//}
 
 //定义了名为interestRate的对象，对象是类Account的静态成员 类型是double
 //从  Account::  开始后面的部分都位于Account的作用域之内了，因此我们可以直接使用initRate函数，注意这是私有的函数！
