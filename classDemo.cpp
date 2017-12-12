@@ -80,7 +80,27 @@ int main() {
     item.combine(string("abcabc-abc-abcde"));
     //正确
     item.combine(Sales_data("abcabc-abc-abcde"));
+
+    //正确，static_cast可以使用explicit的构造函数
+    item.combine(static_cast<Sales_data>(cin));
+
+    //可以用这种花括号的方式初始化聚合类
+    //值的顺序要按照成员的顺序
+    Data dat = {0, "Anna"};
+    //错误的 Data dat2 = {"Anna", 0};
 }
+
+/**
+ * 聚合类：
+ * 1.所有成员都是public的
+ * 2.没有定义任何构造函数
+ * 3.没有类内初始值
+ * 4.没有基类，也没有virtual函数
+ */
+struct Data {
+    int ival;
+    string s;
+};
 
 class A {
 
