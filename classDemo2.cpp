@@ -46,10 +46,16 @@ double Account::interestRate = initRate();
 class Bar1;
 
 class Bar {
+public:
+    //我们可以使用静态成员作为默认实参,非静态不行
+    Bar &clear(char = bkground);
+
 private:
     static Bar mem1; //正确：静态成员可以是不完全类型
     Bar *mem2; //正确：指针成员可以说不完全类型
     Bar mem3; //错误：数据成员必须是完全类型
+
+    static const char bkground;
 };
 
 int main() {
