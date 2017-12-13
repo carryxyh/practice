@@ -20,6 +20,10 @@ private:
     static double interestRate;
 
     static double initRate();
+
+    static constexpr int period = 30; // period是常量表达式
+
+    double daily_tbl[period];
 };
 
 //这里不能重复static关键字！
@@ -37,6 +41,16 @@ void Account::rate(double newRate) {
 //interestRate也可以访问类的私有成员
 //这句话不能放在函数里。报错
 double Account::interestRate = initRate();
+
+//Bar1是个不完全类型 指向Bar1的指针是合法的，但是Bar1的对象是不合法的
+class Bar1;
+
+class Bar {
+private:
+    static Bar mem1; //正确：静态成员可以是不完全类型
+    Bar *mem2; //正确：指针成员可以说不完全类型
+    Bar mem3; //错误：数据成员必须是完全类型
+};
 
 int main() {
     double r;
